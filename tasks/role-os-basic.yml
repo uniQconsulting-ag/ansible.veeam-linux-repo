@@ -1,0 +1,11 @@
+---
+# tasks file for uniQconsulting.veeam_linux_repo
+- name: include role
+  include_role:
+    name: uniQconsulting.os_basic
+  vars:
+    epel_repo: true
+    setup_selinux: true
+    selinux_policy: 'permissive'
+    setup_firewalld: false
+    setup_iptables: true

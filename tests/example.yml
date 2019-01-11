@@ -1,0 +1,12 @@
+---
+- hosts: vm21
+  become: yes
+  roles:
+  - role: uniQconsulting.veeam_linux_repo
+    veeam_user_pw: 'redhat'
+    nfs_mounts:
+      - mountpoint: /mnt/backup-data
+        share: nfs:/srv/nfs/data
+        fstype: nfs4
+        opts: defaults,auto,rw,tcp,noatime,async,rsize=32768,wsize=32768
+...

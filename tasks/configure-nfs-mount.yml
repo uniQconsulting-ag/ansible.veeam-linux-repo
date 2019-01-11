@@ -1,0 +1,20 @@
+---
+- name: create nfs mount points
+  file:
+    path: "{{ item.mountpoint }}"
+    state: directory
+  with_items:
+    - "{{ nfs_mounts }}"
+  when: nfs_mounts|length > 0
+
+- name: configure nfs mount
+  mount:
+    path: "{{ item.mountpoint }}"
+    src: "{{ item.share }}"
+    fstype: "{{ item.fstype | default('nfs') }}"
+    opts: "{{ item.opts | default('defaults') }}"
+    state: present
+  with_items:
+    - "{{ nfs_mounts }}"
+  when: nfs_mounts|length > 0
+...

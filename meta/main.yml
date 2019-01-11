@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Mike Gubser
+  company: uniQconsulting
+  description: installation and configuration of Veeam Repository
+  role_name: veeam_linux_repo
+  min_ansible_version: 2.4
+  license: GPLv3
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+  - system
+  - backup
+  - veeam
+dependencies:
+- { role: uniQconsulting.os_basic }
+

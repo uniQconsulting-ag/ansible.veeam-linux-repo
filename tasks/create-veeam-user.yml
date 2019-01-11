@@ -1,0 +1,16 @@
+---
+- name: Create Veeam Backup User 
+  user:
+    name: "{{ veeam_user_name }}"
+    comment: Veeam Backup User
+    createhome: true
+    password: "{{ veeam_user_pw | password_hash('sha512') }}"
+- name: define sudo rights for user
+  copy:
+    dest: "/etc/sudoers.d/{{ veeam_user_name }}"
+    mode: 0400
+    owner: root
+    group: root
+    content: "{{ veeam_user_name }}     ALL=(ALL)       NOPASSWD: ALL"
+
+...

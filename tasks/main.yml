@@ -1,0 +1,24 @@
+---
+# tasks file for uniQconsulting.veeam_linux_repo
+- import_tasks: include-vars.yml
+
+- name: install role uniQconsulting.os_basic
+  include_tasks: role-os-basic.yml
+  tags: [linux-cos7-basic]
+
+- name: create veeam user
+  include_tasks: create-veeam-user.yml
+  tags: [linux-veeam-repo]
+
+- name: install linux veeam repo
+  include_tasks: install-linux-veeam-repo.yml
+  tags: [linux-veeam-repo]
+
+- name: configure nfs mount
+  include_tasks: configure-nfs-mount.yml
+  tags: [nfs-mount]
+
+- name: add cron job
+  include_tasks: cron.yml
+  tags: [cron]
+...
