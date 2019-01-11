@@ -3,5 +3,5 @@
   cron:
     name: "Linux Veeam Server install Script on reboot"
     special_time: reboot
-    job: "sh /etc/ansible/roles/uniqconsulting.veeam_linux_repo/tests/cos7-veeam-repo-install.sh"
+    job: "sh /usr/local/sbin/vm-install-script.sh"
 ...
