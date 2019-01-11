@@ -14,5 +14,5 @@ galaxy_info:
   - backup
   - veeam
 dependencies:
-- { role: uniQconsulting.os_basic }
+- { role: uniqconsulting.os_basic }
 
