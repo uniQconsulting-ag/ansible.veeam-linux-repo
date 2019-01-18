@@ -20,7 +20,7 @@ ansiblerolefolder="/etc/ansible/roles/"
 echo "CLEANUP VM"
 echo "-------------------------------------------------------------------------"
 echo
-echo " Remove old config"
+echo "Remove old config"
 cd /etc/ansible && rm -fv *.yml
 echo
 echo "Remove $veeamreconfigfile"
@@ -29,6 +29,9 @@ echo
 echo "Clean up Yum Repos"
 yum clean all
 rm -rf /var/cache/yum
+echo
+echo "Remove Network config"
+rm -f /etc/sysconfig/network-scripts/ifcfg-e*
 echo
 echo "Remove old Kernels"
 package-cleanup -y --oldkernels --count=1
