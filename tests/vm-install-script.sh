@@ -37,8 +37,8 @@ then
   # --------- Create Vars File from VMware Tools for Ansible ---------
   echo "[*] Create vars file from VMware Tools"
   vmtoolsd --cmd "info-get guestinfo.ovfenv" | grep -i "Property oe" | awk '{ print $2 $3 }' | sed 's/oe:key\=\"//' | sed 's/oe\:value\=//' | sed 's/\"/\: /' | sed 's/\/>//' > /etc/ansible/$(hostname -s).yml
-  sed -i 's/"[T|t]rue"/true/g' /etc/ansible/$(hostname -s).yml
-  sed -i 's/"[F|f]alse"/false/g' /etc/ansible/$(hostname -s).yml
+  sed -i 's/"[Tt]rue"/true/g' /etc/ansible/$(hostname -s).yml
+  sed -i 's/"[Ff]alse"/false/g' /etc/ansible/$(hostname -s).yml
 fi
 
 ansible-playbook /etc/ansible/playbook/network-setup.yml
