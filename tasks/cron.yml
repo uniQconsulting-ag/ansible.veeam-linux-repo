@@ -3,5 +3,5 @@
   cron:
     name: "Linux Veeam Server install Script on reboot"
     special_time: reboot
-    job: "sh /usr/local/sbin/vm-install-script.sh"
+    job: "sh /usr/local/sbin/vm-install-script.sh >> /var/log/vm-install-script.log 2>&1"
 ...
