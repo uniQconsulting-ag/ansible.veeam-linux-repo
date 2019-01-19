@@ -4,4 +4,12 @@
     name: "Linux Veeam Server install Script on reboot"
     special_time: reboot
     job: "sh /usr/local/sbin/vm-install-script.sh >> /var/log/vm-install-script.log 2>&1"
+
+- name: Add cron job to remove core dumps hourly
+  copy:
+    src: remove-core-dumps.sh
+    dest: /etc/cron.hourly/remove-core-dumps.sh
+    owner: root
+    group: root
+    mode: 0700
 ...
