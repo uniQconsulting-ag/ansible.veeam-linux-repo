@@ -3,9 +3,8 @@
 veeam_user_name: veeamuser
 veeam_user_pw: 'redhat'
 
-nfs_mounts:
-  - mountpoint: /mnt/repo1
-    share: nfs:/srv/nfs/data
-    fstype: nfs4
-    opts: defaults,auto,rw,tcp,noatime,async,rsize=32768,wsize=32768
+nfs_mountpoint: /mnt/repo1
+nfs_share: nfs:/srv/nfs/repo1
+nfs_fstype: nfs4
+nfs_opts: defaults,auto,rw,tcp,noatime,async,rsize=32768,wsize=32768
 ...
