@@ -4,6 +4,7 @@
     name: '{{ item.package }}'
     state: present
   with_items: '{{ cos7_veeam_dependencies }}'
+
 - name: add cronjob to monitor running Veeam jobs
   copy:
     dest: "/etc/cron.d/veeam-counter"
@@ -11,10 +12,12 @@
     owner: root
     group: root
     content: "*/10 * * * * {{ veeam_user_name }} /usr/bin/logger -t veeam-counter \"$(/usr/bin/pgrep -fla VeeamAgent | grep -v 'logger -t veeam-counter' | /bin/cut -d/  -f7 | tr '\\n' ' ' )\""
+
 - name: reload crond
   service:
     name: crond
     state: reloaded
+
 - name: create log folder for veeam
   file:
     path: /var/log/VeeamBackup
@@ -22,3 +25,10 @@
     mode: 0755
     owner: "{{ veeam_user_name }}"
     group: "{{ veeam_user_name }}"
+    
+- name: add veeam ports to firewalld
+  firewalld:
+    port: 2500-5000/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
