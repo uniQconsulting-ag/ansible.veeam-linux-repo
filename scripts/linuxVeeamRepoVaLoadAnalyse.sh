@@ -77,7 +77,9 @@ Anhang:
     NFS Benchmark tests
 $(ls -1 $logDir/bonnie-* | while read f ; do echo "  - $(basename $f)" ; done)
 
-" | mailx -s "Linux Veeam Backup Repository Agent Report" $(ls -1 $logDir/bonnie-*.html | while read f ; do echo -n "-a $f "; done) -a $sarLog -a $jobLog $mailto
+" > $logDir/eMail.txt
+
+cat $logDir/eMail.txt | mailx -s "Linux Veeam Backup Repository Agent Report" $(ls -1 $logDir/bonnie-*.html | while read f ; do echo -n "-a $f "; done) -a $sarLog -a $jobLog $mailto
 
 sleep 5
 mailq
