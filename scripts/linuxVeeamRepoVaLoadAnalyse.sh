@@ -16,7 +16,7 @@ do
    which $p >/dev/null 2>&1 || (echo "ERROR: $p is not installed")
 done
 
-[ "$USER" != 'root' ] || (echo "ERROR: start this script as root")
+[ "$USER" == "root" ] || (echo "ERROR: start this script as root")
 
 echo "INFO: reading Veeam Job logs"
 (
