@@ -51,7 +51,6 @@ do
    mnt="$(echo $line | awk '{print $7}')"
    echo "INFO: running nfs benchmark for share: $share"
    bonnie++ -uroot -q -r0 -x1 -m $share -n 1:4M -d $mnt | bon_csv2html > $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html
-   bonn_att="$bonn_att -a $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html"
 done
 
 
@@ -77,8 +76,7 @@ Anhang:
     $(ls -1 $logDir/bonnie-* | while read f ; do echo "  - $(basename $f)" ; done)
 
 
-" | mailx -s "Linux Veeam Backup Repository Agent Report" $bonn_att -a $sarLog -a $jobLog $mailto
-echo mailx -s Linux Veeam Backup Repository Agent Report $bonn_att -a $sarLog -a $jobLog $mailto
+" | mailx -s "Linux Veeam Backup Repository Agent Report" $(ls -1 $logDir/bonnie-*.html | while read f ; do echo -n "-a $f "; done) -a $sarLog -a $jobLog $mailto
 
 sleep 5
 mailq
