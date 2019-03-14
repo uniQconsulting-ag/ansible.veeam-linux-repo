@@ -74,10 +74,11 @@ Anhang:
     kSar formatierte performance Daten: https://github.com/vlsi/ksar/releases
   - $( basename $sarLog)
     NFS Benchmark tests
-    $(ls -1 $logDir/bonnie-* | while read f ; do echo -- "  - $(basename $f)" ; done)
+    $(ls -1 $logDir/bonnie-* | while read f ; do echo "  - $(basename $f)" ; done)
 
 
 " | mailx -s "Linux Veeam Backup Repository Agent Report" $bonn_att -a $sarLog -a $jobLog $mailto
+echo mailx -s Linux Veeam Backup Repository Agent Report $bonn_att -a $sarLog -a $jobLog $mailto
 
 sleep 5
 mailq
