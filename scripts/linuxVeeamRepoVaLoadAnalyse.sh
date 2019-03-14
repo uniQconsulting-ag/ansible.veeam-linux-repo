@@ -49,8 +49,8 @@ df -hPT | grep ' nfs' | while read line
 do
    share="$(echo $line | awk '{print $1}')"
    mnt="$(echo $line | awk '{print $7}')"
-   echo "INFO: running nfs benchmark for share: $share"
-   bonnie++ -uroot -q -r0 -x1 -m $share -n 1:4M -d $mnt | bon_csv2html > $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html
+   echo "INFO: running nfs benchmark for share $share"
+   bonnie++ -uroot -q -r0 -x1 -m $share -n 1:8M -d $mnt | bon_csv2html > $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html
 done
 
 
@@ -73,7 +73,7 @@ Anhang:
     kSar formatierte performance Daten: https://github.com/vlsi/ksar/releases
   - $( basename $sarLog)
     NFS Benchmark tests
-    $(ls -1 $logDir/bonnie-* | while read f ; do echo "  - $(basename $f)" ; done)
+$(ls -1 $logDir/bonnie-* | while read f ; do echo "  - $(basename $f)" ; done)
 
 " | mailx -s "Linux Veeam Backup Repository Agent Report" $(ls -1 $logDir/bonnie-*.html | while read f ; do echo -n "-a $f "; done) -a $sarLog -a $jobLog $mailto
 
