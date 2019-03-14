@@ -13,10 +13,10 @@ stopP=' session has finished'
 
 for p in mailx awk sort bonnie++
 do 
-   which $p >/dev/null 2>&1 || (echo "ERROR: $p is not installed")
+   which $p >/dev/null 2>&1 || (echo "ERROR: $p is not installed" ; kill -9 $P)
 done
 
-[ "$USER" == "root" ] || (echo "ERROR: start this script as root")
+[ "$USER" == "root" ] || (echo "ERROR: start this script as root" ; kill -9 $P)
 
 echo "INFO: reading Veeam Job logs"
 (
