@@ -48,7 +48,7 @@ Host: $(uname -n)
 vCPU: $(cat /proc/cpuinfo  | grep physical\ id | wc -l)
 RAM: $(free -h | grep Mem: | awk '{print $2}')
 NFS Shares:
-$(df -hP | head -1)
+$(df -hP | head -1 | sed 's/^/      /')
 $(df -hP | grep nfs | sed 's/^/      /')
 
 Datum: $(date '+%Y.%m.%d %H:%M')
@@ -61,5 +61,5 @@ Anhang:
 
 " | mailx -s "Linux Veeam Backup Repository Agent Report" -a $sarLog -a $jobLog $mailto
 
-sleep 1
+sleep 5
 mailq
