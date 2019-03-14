@@ -51,11 +51,12 @@ RAM: $(free -h | grep Mem: | awk '{print $2}')
 Datum: $(date '+%Y.%m.%d %H:%M')
 
 Anhang:
-  Eine History, welche Jobs wann und gleichzeitig gelaufen sind
+    Eine History, welche Jobs wann und gleichzeitig gelaufen sind
   - $( basename $jobLog)
-  kSar formatierte performance Daten: https://github.com/vlsi/ksar/releases
+    kSar formatierte performance Daten: https://github.com/vlsi/ksar/releases
   - $( basename $sarLog)
 
 " | mailx -s "Linux Veeam Backup Repository Agent Report" -a $sarLog -a $jobLog $mailto
 
-
+sleep 1
+mailq
