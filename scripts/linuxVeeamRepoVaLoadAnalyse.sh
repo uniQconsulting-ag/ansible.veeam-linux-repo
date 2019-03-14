@@ -11,11 +11,12 @@ mailto="support@uniqconsulting.ch"
 startP=' srv.*cleanup .* started'
 stopP=' session has finished'
 
-for p in mailx awk sort
+for p in mailx awk sort bonnie++
 do 
    which $p >/dev/null 2>&1 || (echo "ERROR: $p is not installed")
 done
 
+echo "INFO: reading Veeam Job logs"
 (
 echo "JobCount,Date,Task,Job"
 C=0 # start with zero jobs
@@ -38,9 +39,23 @@ do
    echo $C,$line
 done) | tr ',' '\t' | column -t > $jobLog
 
+echo "INFO: prepare kSar file"
 > $sarLog
 ls -1 /var/log/sa/sa?? | while read f; do LC_ALL=C sar -bBdqrRSuvwWy -I SUM -I XALL -u ALL -P ALL -r -f $f >> $sarLog; done
 
+rm -f $logDir/bonnie-*
+
+df -hPT | grep ' nfs' | while read line
+do
+   share="$(echo $line | awk '{print $1}')"
+   mnt="$(echo $line | awk '{print $7}')"
+   echo "INFO: running nfs benchmark for share: $share"
+   bonnie++ -uroot -q -r0 -x1 -m $share -n 1:4M -d $mnt | bon_csv2html > $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html
+   bonn_att="$bonn_att -a $logDir/bonnie-$(echo $share | sed 's|[/:]|_|g').html"
+done
+
+
+echo "INFO: Sending eMail report to: $mailto"
 echo "
 Dies ist eine performance Auswertunng
 
@@ -48,8 +63,8 @@ Host: $(uname -n)
 vCPU: $(cat /proc/cpuinfo  | grep physical\ id | wc -l)
 RAM: $(free -h | grep Mem: | awk '{print $2}')
 NFS Shares:
-$(df -hP | head -1 | sed 's/^/      /')
-$(df -hP | grep nfs | sed 's/^/      /')
+$(df -hPT | head -1 | sed 's/^/      /')
+$(df -hPT | grep ' nfs' | sed 's/^/      /')
 
 Datum: $(date '+%Y.%m.%d %H:%M')
 
@@ -58,8 +73,11 @@ Anhang:
   - $( basename $jobLog)
     kSar formatierte performance Daten: https://github.com/vlsi/ksar/releases
   - $( basename $sarLog)
+    NFS Benchmark tests
+    $(ls -1 $logDir/bonnie-* | while read f ; do echo -- "  - $(basename $f)" ; done)
 
-" | mailx -s "Linux Veeam Backup Repository Agent Report" -a $sarLog -a $jobLog $mailto
+
+" | mailx -s "Linux Veeam Backup Repository Agent Report" $bonn_att -a $sarLog -a $jobLog $mailto
 
 sleep 5
 mailq
