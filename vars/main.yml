@@ -8,4 +8,5 @@ cos7_veeam_dependencies:
   - { package: gzip }
   - { package: tar }
   - { package: openssh-clients }
+  - { package: bonnie++ }
 ...
