@@ -48,6 +48,7 @@ Host: $(uname -n)
 vCPU: $(cat /proc/cpuinfo  | grep physical\ id | wc -l)
 RAM: $(free -h | grep Mem: | awk '{print $2}')
 NFS Shares:
+$(df -hP | head -1)
 $(df -hP | grep nfs | sed 's/^/      /')
 
 Datum: $(date '+%Y.%m.%d %H:%M')
