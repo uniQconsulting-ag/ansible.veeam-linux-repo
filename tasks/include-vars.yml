@@ -1,5 +1,5 @@
 ---
-# tasks file for uniQconsulting.veeam_linux_repo
+# tasks file for uniqconsulting.veeam_linux_repo
 - name: check if local var file "/etc/ansible/{{ ansible_nodename }}.yml" exists
   stat:
     path: "/etc/ansible/{{ ansible_nodename }}.yml"

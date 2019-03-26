@@ -2,7 +2,7 @@
 - hosts: vm21
   become: yes
   roles:
-  - role: uniQconsulting.veeam_linux_repo
+  - role: uniqconsulting.veeam_linux_repo
     veeam_user_pw: 'redhat'
     nfs_mountpoint: /mnt/backup-data
     nfs_share: nfs:/srv/nfs/data

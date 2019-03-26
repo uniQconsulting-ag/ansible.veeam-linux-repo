@@ -1,5 +1,5 @@
 # from galaxy
-- src: uniQconsulting.os_basic
+- src: uniqconsulting.os_basic
   version: master
-- src: uniQconsulting.open_vm_tools
+- src: uniqconsulting.open_vm_tools
   version: master

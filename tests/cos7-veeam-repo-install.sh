@@ -17,11 +17,11 @@
 ### Variables ###
 linuxveeamreposcript="cos7-veeam-repo-install.sh"
 veeamreconfigfile="/root/.veeamreconfig"
-ansible_role="uniQconsulting.veeam_linux_repo"
+ansible_role="uniqconsulting.veeam_linux_repo"
 ansiblerootfolder="/etc/ansible/"
 ansibleconfigfile="/etc/ansible/ansible.cfg"
 ansiblerolefolder="/etc/ansible/roles/"
-ansibleplaybookfolder="/etc/ansible/roles/uniQconsulting.veeam_linux_repo/tests/"
+ansibleplaybookfolder="/etc/ansible/roles/uniqconsulting.veeam_linux_repo/tests/"
 
 if [ ! -f $veeamreconfigfile ]
 then

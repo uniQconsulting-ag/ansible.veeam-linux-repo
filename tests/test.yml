@@ -4,11 +4,11 @@
   roles: 
     - role: role_under_test
   pre_tasks:
-  - name: install role dep uniQconsulting.os-basic
-    shell: ansible-galaxy install -p ./roles uniQconsulting.os_basic
+  - name: install role dep uniqconsulting.os-basic
+    shell: ansible-galaxy install -p ./roles uniqconsulting.os_basic
     changed_when: False
-  - name: install role dep uniQconsulting.open-vm-tools
-    shell: ansible-galaxy install -p ./roles uniQconsulting.open_vm_tools
+  - name: install role dep uniqconsulting.open-vm-tools
+    shell: ansible-galaxy install -p ./roles uniqconsulting.open_vm_tools
     changed_when: False
 
 ...

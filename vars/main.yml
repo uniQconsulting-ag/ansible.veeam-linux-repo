@@ -1,5 +1,5 @@
 ---
-# vars file for uniQconsulting.veeam_linux_repo
+# vars file for uniqconsulting.veeam_linux_repo
 cos7_veeam_dependencies:
   - { package: nfs-utils }
   - { package: perl-constant }

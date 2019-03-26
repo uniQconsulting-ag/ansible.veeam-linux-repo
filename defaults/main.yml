@@ -1,5 +1,5 @@
 ---
-# defaults file for uniQconsulting.veeam_linux_repo
+# defaults file for uniqconsulting.veeam_linux_repo
 veeam_user_name: veeamuser
 veeam_user_pw: 'redhat'
 
