@@ -32,3 +32,5 @@
     permanent: yes
     immediate: yes
     state: enabled
+  when: ansible_virtualization_type != "docker"
+

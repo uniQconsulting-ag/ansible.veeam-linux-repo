@@ -67,6 +67,9 @@ NFS Shares:
 $(df -hPT | head -1 | sed 's/^/      /')
 $(df -hPT | grep ' nfs' | sed 's/^/      /')
 
+CORE DUMP HISTORY:
+$(coredumpctl list | sed 's/^/      /')
+
 Datum: $(date '+%Y.%m.%d %H:%M')
 
 Anhang:
