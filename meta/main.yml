@@ -1,6 +1,6 @@
 galaxy_info:
   author: Mike Gubser
-  company: uniQconsulting
+  company: uniqconsulting
   description: installation and configuration of Veeam Repository
   role_name: veeam_linux_repo
   min_ansible_version: 2.4
