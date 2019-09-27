@@ -7,7 +7,7 @@ P=$$
 logDir=/var/log/VeeamBackup
 jobLog=$logDir/$HOSTNAME-veeamjobHistory.txt
 sarLog=$logDir/$HOSTNAME-sarReport.txt
-mailto="support@uniqconsulting.ch"
+mailto="{{ nfs_mailto }}"
 startP=' srv.*cleanup .* started'
 stopP=' session has finished'
 
