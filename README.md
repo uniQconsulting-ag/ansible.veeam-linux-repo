@@ -17,6 +17,12 @@ sh tests/cos7-veeam-repo-install.sh
 * Currently only tested with CentOS 7
 * Ansible 2.4 or higher is required for this Ansible Role
 
+Installation
+------------
+
+* `ansible-galaxy install uniqconsulting.veeam-linux-repo`
+* `cp roles/uniqconsulting.veeam-linux-repo/tests/example.yml install_X_veeam-repo.yml`
+
 Role Variables
 --------------
 Variables are self speaking or documented in:   
